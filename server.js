@@ -7,7 +7,7 @@ const bcrypt = require('bcrypt');
 const { Recipe, User } = require('./models'); 
 
 const app = express();
-const PORT = 5000;
+
 
 const MONGO_URI = 'mongodb://yunnastya:yunnastya24052007@ac-jbqt754-shard-00-00.25ibbr2.mongodb.net:27017,ac-jbqt754-shard-00-01.25ibbr2.mongodb.net:27017,ac-jbqt754-shard-00-02.25ibbr2.mongodb.net:27017/mir-na-vkus?ssl=true&replicaSet=atlas-kkk9qy-shard-0&authSource=admin&appName=Cluster0';
 
