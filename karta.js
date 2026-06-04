@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
-    const API_URL = "http://localhost:5000/api";
-
+    // Заменили локальный адрес на живой сервер в интернете
+    const API_URL = "https://mir-na-vkus-backend.onrender.com/api";
     // --- ФУНКЦИИ ДАННЫХ ---
 
     // Получаем рецепты из базы данных по названию страны

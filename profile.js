@@ -17,8 +17,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const usernameSpan = document.getElementById("username");
     const favoritesList = document.getElementById("favorites-list");
 
-    const API_URL = "http://localhost:5000/api";
-
+    const API_URL = "https://mir-na-vkus-backend.onrender.com/api";
     // 2. Функция обновления состояния страницы
     function updateAuthState() {
         const loggedInUser = localStorage.getItem("loggedInUser");

@@ -1,6 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
-    const API_URL = "http://localhost:5000/api";
-
+    const API_URL = "https://mir-na-vkus-backend.onrender.com/api";
     // 1. Подсветка активного пункта меню
     const currentPage = window.location.pathname.split("/").pop();
     const menuLinks = document.querySelectorAll("nav ul li a");
