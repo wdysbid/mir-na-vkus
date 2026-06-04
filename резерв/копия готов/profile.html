@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Профиль</title>
+    <link rel="stylesheet" href="profile.css">
+</head>
+<body>
+    <header>
+        <div class="logo">Мир на вкус!</div>
+        <nav>
+            <ul>
+                <li><a href="karta.html">Карта</a></li>
+                <li><a href="poisk.html">Поиск</a></li>
+                <li><a href="kategorii.html">Категории</a></li>
+                <li><a id="auth-button" href="profile.html">Профиль</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <main>
+        <div id="auth-modal" class="modal">
+            <div class="modal-content">
+                <span id="close-auth">&times;</span>
+                <p class="skip-auth">Продолжить без входа</p>
+    
+                <div id="registration-form">
+                    <h2>Регистрация</h2>
+                    <input type="text" id="register-login" placeholder="Логин">
+                    <input type="password" id="register-password" placeholder="Пароль">
+                    <input type="password" id="confirm-password" placeholder="Повторите пароль">
+                    <button id="register-btn">Зарегистрироваться</button>
+                    <p>Уже есть аккаунт? <a href="#" id="show-login">Войти</a></p>
+                </div>
+    
+                <div id="login-form" class="hidden">
+                    <h2>Авторизация</h2>
+                    <input type="text" id="login-login" placeholder="Логин">
+                    <input type="password" id="login-password" placeholder="Пароль">
+                    <button id="login-btn">Войти</button>
+                    <p>Еще нет аккаунта? <a href="#" id="show-register">Зарегистрироваться</a></p>
+                </div>
+            </div>
+        </div>
+
+        <div id="profile-content" class="hidden">
+            <div class="profile-card">
+                <div class="profile-photo">
+                    <img src="default.png" alt="Фото профиля">
+                </div>
+                <div class="profile-info">
+                    <p>Логин: <span id="username"></span></p>
+                </div>
+                <div class="favorites-section">
+                    <h3>Избранные рецепты</h3>
+                    <ul id="favorites-list"></ul>
+                </div>
+                <button id="logout-btn">Выйти</button>
+            </div>
+        </div>
+
+        <div id="favorites-list"></div>
+
+    </main>
+    
+    <footer>
+        <p>&copy; 2025 Онлайн-галерея рецептов</p>
+    </footer>
+
+    
+
+    <script src="profile.js"></script>
+</body>
+</html>

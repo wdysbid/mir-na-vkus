@@ -1,0 +1,266 @@
+/* Общие стили */
+@import url('https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Rubik+Mono+One&display=swap');
+body {
+    font-family: 'Montserrat', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: url('bg1.png') no-repeat center center fixed; /* Фон с изображением */
+    background-size: cover; /* Растягиваем фон на весь экран */
+    line-height: 1.6;
+    overflow-x: hidden; /* Отключаем только горизонтальную прокрутку */
+
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #E49C1A; 
+    color: white;
+    position: sticky; /* Закрепляем хедер при прокрутке */
+    top: 0;
+    z-index: 10; /* Поверх фона */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.welcome-text {
+    position: absolute;
+    left: 70px;
+    top: 0px;
+    /* font-size: 20px;
+    font-weight: bold; */
+    color: #86ba70; 
+
+}
+
+.welcome-text h1 {
+    margin-bottom: 5px; /* Уменьшенный отступ между строками */
+    font-size: 30px;
+    /* font-weight: bold;
+    color: white; */
+    color: #f3c188;
+    text-shadow: 1px 1px 10px #b66905;
+}
+
+.welcome-text p {
+    margin-top: 0; /* Убираем верхний отступ */
+    font-size: 15px;
+    color: #f3c188;
+    text-shadow: 1px 1px 10px #b66905;
+}
+
+
+.logo {
+    font-size: 30px;
+    font-weight: bold;
+    margin-left: 50px;
+}
+
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    font-size: 22px;
+}
+
+nav ul li {
+    margin-right: 50px;
+    margin-inline-start: auto;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: white;
+    font-weight: 600;
+    padding: 5px 10px;
+    border-radius: 7px;
+    transition: background-color 0.3s;
+}
+
+nav ul li a.active, nav ul li a:hover {
+    background-color: #b66905;
+}
+
+main {
+    position: relative;
+    padding: 110px 20px; /* Отступ сверху для хедера */
+    min-height: calc(100vh - 80px); /* Учитываем высоту хедера и футера */
+    box-sizing: border-box; /* Включаем отступы в расчет высоты */
+    flex-grow: 1;
+}
+
+.map-container {
+    display: flex;
+    justify-content: center; /* Центрируем карту по горизонтали */
+    margin-top: 10px; /* Отступ сверху */
+    width: 100%; /* Карта занимает всю ширину */
+    position: relative;
+    margin: 20px auto;
+}
+
+
+.map {
+    width: 1100px;
+    height: 600px; /* Автоматически подстраиваем высоту */
+    display: block;
+}
+
+.country {
+    position: absolute;
+    font-size: 1em;
+    color: white;
+    cursor: pointer;
+    background: #86ba70; /* Нежно-зеленый цвет */
+    padding: 5px 10px;
+    border-radius: 15px 15px 15px 0; /* Заостренный нижний левый угол */
+    transition: transform 0.2s, background-color 0.2s;
+    z-index: 2; /* Кнопки поверх карты */
+}
+
+.country:hover {
+    transform: scale(1.1);
+    background-color: #9BC679;
+}
+
+#recipe-container {
+    position: relative;
+    width: 80%;
+    max-width: 1200px;
+    margin: 20px auto;
+    background: rgba(255, 255, 255, 0.95);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    z-index: 5;
+}
+
+#recipe-container.hidden {
+    display: none;
+}
+
+#close-recipes {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    border: none;
+    background: none;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+
+#recipe-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.recipe {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 30%;
+    background: #f9f9f9;
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+.recipe img {
+    width: 100px;
+    height: 100px;
+    border-radius: 5px;
+}
+
+.recipe h3 {
+    margin: 10px 0 5px;
+}
+
+.recipe .ingredients {
+    font-size: 14px;
+    color: #555;
+}
+
+.recipe .instructions {
+    display: none;
+    font-size: 14px;
+    color: #333;
+    margin-top: 10px;
+}
+
+.recipe button {
+    background: #86ba70;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 5px;
+}
+
+.instructions {
+    display: none;
+}
+
+/* Контейнер для изображения и сердечка */
+.image-wrapper {
+    position: relative;
+    width: 100%;
+    height: auto;
+}
+
+.image-wrapper img:first-child {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+    object-fit: cover;
+}
+
+.heart-icon {
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+    object-fit: contain;
+    transition: transform 0.2s ease;
+}
+
+
+
+.image-wrapper .heart-icon {
+    position: absolute;
+    bottom: 8px;
+    right: 8px;
+    width: 50px; /* изменяем размер */
+    height: 50px;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.image-wrapper .favorite-btn:hover {
+    transform: scale(1.15);
+}
+
+footer {
+    text-align: center;
+    padding: 5px 0; /* Уменьшили отступы для компактности */
+    background-color: #C87000; /* Цвет фона */
+    color: white;
+    font-family: 'Open Sans', Arial, sans-serif;
+    width: 100%;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.2);
+    margin-top: 20px; /* Отступ сверху для отделения от контента */
+}
+
+
+

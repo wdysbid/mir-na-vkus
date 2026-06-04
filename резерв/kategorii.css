@@ -1,0 +1,196 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+
+body {
+    font-family: 'Open Sans', Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: url('bg1.png') no-repeat center center fixed;
+    background-size: cover;
+    line-height: 1.6;
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #E49C1A; 
+    color: white;
+    position: sticky; /* Закрепляем хедер при прокрутке */
+    top: 0;
+    z-index: 10; /* Поверх фона */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.logo {
+    font-size: 30px;
+    font-weight: bold;
+    margin-left: 50px;
+}
+
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    font-size: 22px;
+}
+
+nav ul li {
+    margin-right: 50px;
+    margin-inline-start: auto;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: white;
+    font-weight: 600;
+    padding: 5px 10px;
+    border-radius: 7px;
+    transition: background-color 0.3s;
+}
+
+nav ul li a.active, nav ul li a:hover {
+    background-color: #b66905;
+}
+
+main {
+    padding: 10px 20px;
+    min-height: calc(100vh - 80px);
+    box-sizing: border-box;
+    flex-grow: 1;
+}
+main h1 {
+    color: white;
+    margin-left: 50px;
+}
+
+/* Категории */
+.category-buttons {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.category-buttons button {
+    background-color: #86ba70;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 10px;
+    cursor: pointer;
+    margin: 5px;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.category-buttons button:hover {
+    background-color: #6a9b58;
+    transform: scale(1.05);
+}
+
+.category-buttons button.active {
+    background-color: #5d8c4d;
+}
+
+/* Список рецептов */
+#recipe-list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.recipe {
+    width: 80%;
+    background: white;
+    padding: 15px;
+    border-radius: 15px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    text-align: left;
+    transition: 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    position: relative;
+}
+
+.recipe:hover {
+    transform: scale(1.02);
+}
+
+/* Картинка */
+.recipe img {
+    width: 150px;
+    height: 150px;
+    border-radius: 10px;
+    object-fit: cover;
+    flex-shrink: 0;
+}
+
+/* Контейнер с текстом */
+.recipe-content {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+/* Заголовок */
+.recipe h3 {
+    margin: 5px 0;
+    cursor: pointer;
+    color: #b66905;
+    transition: color 0.3s;
+}
+
+.recipe h3:hover {
+    color: #8a5000;
+}
+
+/* Ингредиенты */
+.recipe .ingredients {
+    font-size: 14px;
+    color: #555;
+}
+
+/* Инструкция */
+.recipe .instructions {
+    display: none;
+    font-size: 14px;
+    color: #333;
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 2px solid #b66905;
+}
+
+/* Кнопка */
+.recipe button {
+    background: #86ba70;
+    color: white;
+    border: none;
+    padding: 7px 15px;
+    border-radius: 7px;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: 0.3s;
+    align-self: flex-start;
+    display: block;
+}
+
+.recipe button:hover {
+    background: #8a5000;
+}
+
+/* Футер */
+footer {
+    text-align: center;
+    padding: 5px 0;
+    background-color: #C87000;
+    color: white;
+    width: 100%;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.2);
+    margin-top: 20px;
+}

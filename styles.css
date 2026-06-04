@@ -1,0 +1,304 @@
+@import url('https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Rubik+Mono+One&display=swap');
+
+/* === БАЗОВЫЕ НАСТРОЙКИ === */
+body {
+    font-family: 'Montserrat', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: url('bg1.png') no-repeat center center fixed;
+    background-size: cover;
+    line-height: 1.6;
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* === ШАПКА === */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 40px;
+    background-color: #E49C1A; 
+    color: white;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    box-sizing: border-box;
+}
+
+.logo {
+    font-size: 28px;
+    font-weight: 800;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+    white-space: nowrap;
+}
+
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 20px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: white;
+    font-weight: 600;
+    font-size: 18px;
+    padding: 8px 15px;
+    border-radius: 20px;
+    transition: all 0.3s;
+    white-space: nowrap;
+}
+
+nav ul li a:hover, nav ul li a.active {
+    background-color: white;
+    color: #E49C1A;
+}
+
+/* === ОСНОВНОЙ КОНТЕНТ === */
+main {
+    position: relative;
+    padding: 110px 20px 40px; 
+    box-sizing: border-box;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.welcome-text {
+    position: absolute;
+    left: 70px;
+    top: 20px;
+    color: #ffffff; 
+}
+
+.welcome-text h1 {
+    margin: 0 0 5px;
+    font-size: 30px;
+    text-shadow: 1px 1px 10px #b66905;
+}
+
+/* === КАРТА === */
+.map-container {
+    position: relative;
+    width: 100%;
+    max-width: 1100px;
+    margin: 20px auto;
+}
+
+.map {
+    width: 100%;
+    height: auto;
+    display: block;
+    filter: drop-shadow(0 10px 20px rgba(0,0,0,0.3)); 
+}
+
+.country {
+    position: absolute;
+    font-size: 0.9em;
+    color: white;
+    cursor: pointer;
+    background: #86ba70;
+    padding: 6px 12px;
+    border-radius: 12px 12px 12px 0;
+    transition: transform 0.2s, background-color 0.2s;
+    z-index: 2;
+    font-weight: bold;
+    border: 2px solid white;
+    box-shadow: 3px 3px 10px rgba(0,0,0,0.3);
+    white-space: nowrap;
+}
+
+.country:hover {
+    transform: scale(1.1) translateY(-3px);
+    background-color: #E49C1A;
+    z-index: 10;
+}
+
+.reverse-tag,
+.country[style*="left: 8"], 
+.country[style*="left: 9"] {
+    border-radius: 12px 12px 0 12px !important;
+    transform: translateX(-100%); 
+}
+
+.reverse-tag:hover,
+.country[style*="left: 8"]:hover, 
+.country[style*="left: 9"]:hover {
+    transform: translateX(-100%) scale(1.1) translateY(-3px) !important;
+    background-color: #E49C1A;
+}
+
+/* === ОКНО С РЕЦЕПТАМИ (ПОЛУПРОЗРАЧНОЕ) === */
+#recipe-container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 30px auto;
+    background: rgba(255, 255, 255, 0.2); /* Полупрозрачный фон */
+    padding: 25px;
+    border-radius: 20px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    z-index: 20;
+    backdrop-filter: blur(15px); /* Эффект стекла */
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    position: relative;
+    box-sizing: border-box;
+}
+
+#recipe-container.hidden { display: none; }
+
+#close-recipes {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    border: none;
+    background: #ff6b6b;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.3s;
+}
+
+/* === СЕТКА: ТРИ В РЯД === */
+#recipe-list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Ровно 3 колонки */
+    gap: 25px;
+    margin-top: 20px;
+}
+
+/* === КАРТОЧКА БЛЮДА === */
+.recipe {
+    background: rgba(255, 255, 255, 0.9); 
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    transition: transform 0.3s ease;
+}
+
+.recipe:hover {
+    transform: translateY(-5px);
+}
+
+.image-wrapper {
+    position: relative;
+    width: 100%;
+    border-radius: 8px;
+    overflow: hidden;
+    aspect-ratio: 4 / 3;
+}
+
+.image-wrapper img:first-child {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.heart-icon {
+    position: absolute;
+    bottom: 8px;
+    right: 8px;
+    width: 35px;
+    height: 35px;
+    cursor: pointer;
+}
+
+/* Фиксация названия */
+.recipe h3 {
+    margin: 15px 0 10px;
+    font-size: 22px;
+    color: #C87000;
+    min-height: 60px; /* Фиксированная высота */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1.2;
+}
+
+/* Ингредиенты (ПОЛНОСТЬЮ ВИДИМЫЕ) */
+.recipe .ingredients {
+    font-size: 15px;
+    color: #333;
+    margin-bottom: 15px;
+    text-align: left;
+    line-height: 1.4;
+    height: auto; /* Убираем ограничения */
+    overflow: visible;
+}
+
+/* Кнопка "Подробнее" (Всегда внизу) */
+.recipe .toggle-instructions, .recipe button {
+    margin-top: auto; 
+    background: #86ba70;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 16px;
+    transition: background 0.3s;
+}
+
+.recipe button:hover {
+    background: #E49C1A;
+}
+
+/* === ФУТЕР === */
+footer {
+    text-align: center;
+    padding: 25px;
+    background-color: #C87000;
+    color: white;
+    margin-top: 50px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* === АДАПТИВНОСТЬ === */
+@media (max-width: 1100px) {
+    #recipe-list {
+        grid-template-columns: repeat(2, 1fr); /* 2 колонки на средних экранах */
+    }
+}
+
+@media (max-width: 900px) {
+    header { flex-direction: column; padding: 15px; }
+    nav ul { margin-top: 10px; gap: 10px; flex-wrap: wrap; justify-content: center; }
+    .welcome-text { position: static; text-align: center; margin-bottom: 20px; }
+    main { padding-top: 20px; }
+}
+
+@media (max-width: 700px) {
+    #recipe-list {
+        grid-template-columns: 1fr; /* 1 колонка на мобильных */
+    }
+    
+    .logo { font-size: 22px; }
+    nav ul li a { font-size: 14px; padding: 5px 10px; }
+
+    .country {
+        font-size: 10px;
+        padding: 4px 8px;
+        max-width: 75px;
+        white-space: normal;
+        text-align: center;
+    }
+}

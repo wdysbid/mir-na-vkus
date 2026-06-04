@@ -1,0 +1,223 @@
+/* Общие стили */
+@import url('https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Rubik+Mono+One&display=swap');
+
+body {
+    font-family: 'Open Sans', Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: url('bg1.png') no-repeat center center fixed;
+    background-size: cover;
+    line-height: 1.6;
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #E49C1A; 
+    color: white;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.logo {
+    font-size: 30px;
+    font-weight: bold;
+    margin-left: 50px;
+}
+
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    font-size: 22px;
+}
+
+nav ul li {
+    margin-right: 50px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: white;
+    font-weight: 600;
+    padding: 5px 10px;
+    border-radius: 7px;
+    transition: background-color 0.3s;
+}
+
+nav ul li a.active, nav ul li a:hover {
+    background-color: #b66905;
+}
+
+main {
+    padding: 10px 20px;
+    min-height: calc(100vh - 80px);
+    box-sizing: border-box;
+    flex-grow: 1;
+}
+main h1 {
+    color: white;
+    margin-left: 50px;
+}
+
+/* Поиск */
+.search-container {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.search-container h2 {
+    color: white; /* Исправлено */
+    text-align: left;
+    margin-left: 50px;
+    margin-bottom: 10px;
+}
+
+/* Инпут поиска */
+.search-container input {
+    width: 60%;
+    padding: 10px;
+    font-size: 16px;
+    border: 2px solid #b66905;
+    border-radius: 5px;
+    outline: none;
+}
+
+/* Фильтры (в одну строку) */
+.filters {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 10px;
+    flex-wrap: nowrap; /* Запрещаем перенос строк */
+}
+
+.filters label {
+    font-size: 16px;
+    color: white; /* Исправлено */
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+/* Стили для списка рецептов */
+#recipe-list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.recipe {
+    width: 80%;
+    background: white;
+    padding: 15px;
+    border-radius: 15px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    text-align: left;
+    transition: 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    position: relative;
+}
+
+.recipe:hover {
+    transform: scale(1.02);
+}
+
+/* Оставляем картинку фиксированной */
+.recipe img {
+    width: 150px;
+    height: 150px;
+    border-radius: 10px;
+    object-fit: cover;
+    flex-shrink: 0; 
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+/* Контент рецепта с отступом, чтобы не залезал на картинку */
+.recipe-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex: 1;
+    margin-left: 180px; /* Добавлен отступ для учета фиксированной картинки */
+}
+
+/* Заголовок блюда */
+.recipe h3 {
+    margin: 5px 0;
+    cursor: pointer;
+    color: #b66905;
+    transition: color 0.3s;
+}
+
+.recipe h3:hover {
+    color: #8a5000;
+}
+
+/* Ингредиенты */
+.recipe .ingredients {
+    font-size: 14px;
+    color: #555;
+}
+
+/* Кухня */
+.recipe .cuisine {
+    font-size: 14px;
+    color: #333;
+    font-weight: bold;
+    margin-top: 5px;
+}
+
+/* Инструкция */
+.recipe .instructions {
+    display: none;
+    font-size: 14px;
+    color: #333;
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 2px solid #b66905;
+}
+
+/* Кнопка */
+.recipe button {
+    background: #86ba70;
+    color: white;
+    border: none;
+    padding: 7px 15px;
+    border-radius: 7px;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: 0.3s;
+    align-self: flex-start;
+    display: block;
+}
+
+.recipe button:hover {
+    background: #8a5000;
+}
+
+/* Футер */
+footer {
+    text-align: center;
+    padding: 5px 0;
+    background-color: #C87000;
+    color: white;
+    width: 100%;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.2);
+    margin-top: 20px;
+}

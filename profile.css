@@ -1,0 +1,442 @@
+@import url('https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Rubik+Mono+One&display=swap');
+
+/* === БАЗОВЫЕ НАСТРОЙКИ === */
+body {
+    font-family: 'Montserrat', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: url('bg1.png') no-repeat center center fixed;
+    background-size: cover;
+    line-height: 1.6;
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* === ШАПКА (ТОЧНАЯ КОПИЯ С КАРТЫ) === */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 40px;
+    background-color: #E49C1A; 
+    color: white;
+    position: sticky;
+    top: 0;
+    z-index: 1000; /* Соответствует z-index на карте */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    box-sizing: border-box;
+}
+
+.logo {
+    font-size: 28px;
+    font-weight: 800;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+    white-space: nowrap;
+}
+
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 20px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: white;
+    font-weight: 600;
+    font-size: 18px;
+    padding: 8px 15px;
+    border-radius: 20px;
+    transition: all 0.3s;
+    white-space: nowrap;
+}
+
+nav ul li a:hover, nav ul li a.active {
+    background-color: white;
+    color: #E49C1A;
+}
+
+/* === КОНТЕНТ ПРОФИЛЯ === */
+main {
+    padding: 40px 20px;
+    box-sizing: border-box;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Верхняя карточка с данными юзера */
+.profile-card {
+    width: 100%;
+    max-width: 1000px;
+    background: rgba(255, 255, 255, 0.15);
+    padding: 30px;
+    border-radius: 15px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.3);
+    margin-bottom: 30px;
+    text-align: center;
+    color: white;
+    box-sizing: border-box;
+}
+
+.profile-photo {
+    width: 120px;
+    height: 120px;
+    margin: 0 auto 15px;
+    border-radius: 50%;
+    border: 3px solid white;
+    overflow: hidden;
+    background: #ddd;
+}
+
+.profile-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Загрузка аватара */
+.avatar-upload {
+    margin: 15px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+#avatar-url-input {
+    width: 250px;
+    padding: 8px 12px;
+    border-radius: 8px;
+    border: 1px solid rgba(255,255,255,0.3);
+    background: rgba(255,255,255,0.1);
+    color: white;
+}
+
+#change-avatar-btn {
+    background: #E49C1A;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+#change-avatar-btn:hover {
+    background: #86ba70;
+}
+
+/* === СПИСОК РЕЦЕПТОВ === */
+#favorites-list {
+    width: 100%;
+    max-width: 1000px;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+/* Карточка рецепта */
+.recipe {
+    background: #ffffff; 
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    display: flex;
+    align-items: flex-start; 
+    gap: 25px;
+    position: relative;
+    transition: 0.3s;
+    border: 1px solid #ddd;
+    text-align: left;
+    color: #333; 
+    box-sizing: border-box;
+}
+
+.recipe:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+}
+
+.recipe img {
+    width: 180px;
+    height: 180px;
+    border-radius: 12px;
+    object-fit: cover;
+    flex-shrink: 0;
+}
+
+.recipe-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.recipe h3 {
+    margin: 0 0 5px 0;
+    color: #C87000;
+    font-size: 24px;
+    font-weight: 800;
+}
+
+.recipe .details, 
+.recipe .category {
+    font-size: 15px;
+    color: #333 !important; 
+    margin: 2px 0;
+}
+
+.recipe strong {
+    color: #000 !important; 
+    font-weight: 700;
+}
+
+/* Блок инструкции (Способ приготовления) */
+.recipe .instructions {
+    display: none;
+    font-size: 15px;
+    color: #444 !important; 
+    margin-top: 10px;
+    padding: 15px;
+    background: #f1f1f1; 
+    border-radius: 8px;
+    border: 1px solid #eee;
+    line-height: 1.6;
+}
+
+.recipe .instructions hr {
+    border: 0;
+    border-top: 1px solid #ccc;
+    margin: 10px 0;
+}
+
+/* Кнопки "Способ приготовления" */
+.recipe .toggle-instructions {
+    background: #86ba70;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: 600;
+    align-self: flex-start;
+    transition: 0.3s;
+    margin-top: 10px;
+}
+
+.recipe .toggle-instructions:hover {
+    background: #C87000;
+}
+
+/* Иконка удаления (сердечко/корзина) */
+.favorite-icon {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
+    z-index: 5;
+    transition: transform 0.2s;
+}
+
+.favorite-icon:hover {
+    transform: scale(1.2);
+}
+
+.favorite-icon img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: contain;
+}
+
+/* === КНОПКА ВЫХОДА === */
+#logout-btn {
+    background: #ff4d4f; 
+    color: white;
+    padding: 12px 30px; 
+    border-radius: 30px; 
+    border: 2px solid white;
+    cursor: pointer;
+    font-weight: 800;
+    font-size: 16px; 
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    margin-top: 10px;
+    text-transform: uppercase; 
+}
+
+#logout-btn:hover {
+    background: #cf1322;
+    transform: scale(1.05);
+}
+
+/* === ФУТЕР === */
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #C87000;
+    color: white;
+    margin-top: auto;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* === МОДАЛЬНОЕ ОКНО === */
+.modal {
+    display: none; 
+    position: fixed;
+    z-index: 2000; 
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7); 
+    backdrop-filter: blur(5px); 
+    animation: fadeIn 0.3s ease; 
+}
+
+.modal-content {
+    background: #ffffff;
+    margin: 8% auto;
+    padding: 40px;
+    width: 90%;
+    max-width: 420px;
+    border-radius: 24px; 
+    position: relative;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+    text-align: center;
+    animation: slideUp 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
+}
+
+#close-auth {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 28px;
+    font-weight: bold;
+    color: #999;
+    cursor: pointer;
+    transition: 0.3s;
+    line-height: 1;
+}
+
+#close-auth:hover {
+    color: #ff4d4f;
+    transform: rotate(90deg);
+}
+
+.modal-content h2 {
+    font-family: 'Dela Gothic One', cursive;
+    color: #E49C1A;
+    margin-top: 0;
+    margin-bottom: 25px;
+    font-size: 24px;
+    text-transform: uppercase;
+}
+
+.modal-content input {
+    width: 100%;
+    padding: 14px 20px;
+    margin: 10px 0;
+    border: 2px solid #eee;
+    border-radius: 12px;
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 16px;
+    transition: 0.3s;
+    outline: none;
+}
+
+.modal-content input:focus {
+    border-color: #E49C1A;
+    box-shadow: 0 0 8px rgba(228, 156, 26, 0.2);
+}
+
+.modal-content button {
+    width: 100%;
+    background: #E49C1A;
+    color: white;
+    padding: 15px;
+    border: none;
+    border-radius: 12px;
+    font-size: 18px;
+    font-weight: 700;
+    cursor: pointer;
+    margin-top: 15px;
+    transition: 0.3s;
+    box-shadow: 0 4px 15px rgba(228, 156, 26, 0.3);
+}
+
+.modal-content button:hover {
+    background: #C87000;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(200, 112, 0, 0.4);
+}
+
+.modal-content p {
+    margin-top: 20px;
+    font-size: 14px;
+    color: #666;
+}
+
+.modal-content a {
+    color: #E49C1A;
+    text-decoration: none;
+    font-weight: 700;
+    transition: 0.3s;
+}
+
+.modal-content a:hover {
+    text-decoration: underline;
+    color: #C87000;
+}
+
+/* === АНИМАЦИИ === */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideUp {
+    from { 
+        opacity: 0;
+        transform: translateY(50px); 
+    }
+    to { 
+        opacity: 1;
+        transform: translateY(0); 
+    }
+}
+
+.hidden { display: none !important; }
+
+/* === АДАПТИВНОСТЬ (ПОЛНОСТЬЮ СКОПИРОВАНА С КАРТЫ) === */
+@media (max-width: 900px) {
+    header { flex-direction: column; padding: 15px; }
+    nav ul { margin-top: 10px; gap: 10px; flex-wrap: wrap; justify-content: center; }
+}
+
+@media (max-width: 700px) {
+    .logo { font-size: 22px; }
+    nav ul li a { font-size: 14px; padding: 5px 10px; }
+    
+    /* Корректировка отображения карточек избранного на телефонах */
+    .recipe { flex-direction: column; text-align: center; }
+    .recipe img { width: 100%; height: 200px; }
+    .recipe .toggle-instructions { align-self: center; }
+}
+
+nav ul li a[href*="profile.html"], 
+nav ul li a.active {
+    background-color: white !important;
+    color: #E49C1A !important;
+}

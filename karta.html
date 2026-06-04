@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Мир на вкус!</title>
+    <link rel="stylesheet" href="styles.css">
+    
+</head>
+<body>
+    <header>
+        <div class="logo">Мир на вкус!</div>
+        <nav>
+            <ul>
+                <li><a href="karta.html" class="active" id="menu-map">Карта</a></li>
+                <li><a href="poisk.html" id="menu-search">Поиск</a></li>
+                <li><a href="kategorii.html" id="menu-categories">Категории</a></li>
+                <li><a href="profile.html" id="auth-button">Профиль</a></li>
+                
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="welcome-text">
+            <h1>Добро пожаловать в онлайн-галерею кулинарных рецептов!</h1>
+            <p>Выберите страну и наслаждайтесь готовкой. Желаем успехов и приятного аппетита!</p>
+        </div>
+        <section class="map-container">
+            <img src="mapmain.png" alt="Карта мира" class="map">
+            <div class="country" style="top: 15%; left: 15%;">Канада</div>
+            <div class="country" style="top: 30%; left: 16%;">США</div>
+            <div class="country" style="top: 67%; left: 30%;">Бразилия</div>
+            <div class="country" style="top: 47%; left: 58%;">Египет</div>
+            <div class="country" style="top: 15%; left: 77%;">Россия</div>
+            <div class="country" style="top: 27%; left: 69%;">Казахстан</div>
+            <!-- <div class="country" style="top: 38%; left: 77%;">Китай</div> -->
+            <!-- <div class="country" style="left: 75%; top: 40%;">Китай</div> -->
+            <div class="country reverse-tag" style="left: 75%; top: 40%;">Китай</div>
+            <div class="country" style="top: 36%; left: 92%;">Япония</div>
+            <div class="country" style="top: 70%; left: 92%;">Австралия</div>
+        </section>
+
+        <div id="recipe-container" class="hidden">
+            <button id="close-recipes">✖</button>
+            <div id="recipe-list"></div>
+        </div>
+
+        
+    </main>
+    
+
+    <footer>
+        <p>© 2026 Онлайн-галерея рецептов | Разработано Юн Анастасией</p>
+    </footer>
+
+    <script src="karta.js"></script>
+    <script src="profile.js"></script>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Поиск рецептов</title>
+    <link rel="stylesheet" href="kategoriipoisk.css">
+</head>
+<body>
+    <header>
+        <div class="logo">Мир на вкус!</div>
+        <nav>
+            <ul>
+                <li><a href="karta.html" id="menu-map">Карта</a></li>
+                <li><a href="poisk.html" class="active" id="menu-search">Поиск</a></li>
+                <li><a href="kategorii.html" id="menu-categories">Категории</a></li>
+                <li><a id="auth-button" href="profile.html">Профиль</a></li>
+            </ul>
+        </nav>
+    </header>
+
+<main>
+    <h1>Категории блюд</h1>
+    
+    <div class="category-buttons">
+        <button data-category="all" class="active">Все</button>
+        <button data-category="soup">Супы</button>
+        <button data-category="main">Основные блюда</button>
+        <button data-category="snack">Закуски</button>
+        <button data-category="bkdessert">Выпечка и десерты</button>
+        <button data-category="drink">Напитки</button>
+    </div>
+    <div id="recipe-list"></div>
+</main>
+
+<footer>
+    <p>© 2026 Онлайн-галерея рецептов | Разработано Юн Анастасией</p>
+</footer>
+
+<script src="kategoriipoisk.js"></script>
+<script src="profile.js"></script>
+
+</body>
+</html>
