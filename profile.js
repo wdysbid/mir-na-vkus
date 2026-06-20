@@ -16,7 +16,7 @@ window.removeFavorite = async (recipeName) => {
             body: JSON.stringify({ username: user, recipeName: recipeName })
         });
         if (response.ok) {
-            // Перерисовываем список (вызываем функцию, которая станет доступна глобально)
+            // Перерисовываем список
             if (typeof window.refreshFavoritesUI === "function") {
                 window.refreshFavoritesUI();
             }
@@ -47,6 +47,8 @@ document.addEventListener("DOMContentLoaded", () => {
     
     const showLogin = document.getElementById("show-login");
     const showRegister = document.getElementById("show-register");
+    const registerBtn = document.getElementById("register-btn");
+    const loginBtn = document.getElementById("login-btn");
     const logoutBtn = document.getElementById("logout-btn");
     
     const profileContent = document.getElementById("profile-content");
@@ -75,9 +77,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // 3. Авторизация (Вход)
     async function loginUser(e) {
-        e.preventDefault();
+        if (e) e.preventDefault(); // Отменяем перезагрузку страницы
+        
         const usernameInput = document.getElementById("login-login");
         const passwordInput = document.getElementById("login-password");
+
+        if (!usernameInput.value.trim() || !passwordInput.value.trim()) {
+            alert("Заполните все поля для входа!");
+            return;
+        }
 
         try {
             const response = await fetch(`${API_URL}/login`, {
@@ -103,10 +111,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // 4. Регистрация
     async function registerUser(e) {
-        e.preventDefault();
+        if (e) e.preventDefault(); // Отменяем перезагрузку страницы
+        
         const usernameInput = document.getElementById("register-login");
         const passwordInput = document.getElementById("register-password");
         const confirmInput = document.getElementById("confirm-password");
+
+        if (!usernameInput.value.trim() || !passwordInput.value.trim() || !confirmInput.value.trim()) {
+            return alert("Заполните все поля регистрации!");
+        }
 
         if (passwordInput.value !== confirmInput.value) {
             return alert("Пароли не совпадают!");
@@ -173,7 +186,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-    // Прокидываем функцию обновления списка наружу, чтобы её видел глобальный window.removeFavorite
+    // Прокидываем функцию обновления списка наружу
     window.refreshFavoritesUI = displayFavorites;
 
     // Логика кнопок "Показать способ приготовления"
@@ -189,7 +202,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // 6. Слушатели событий формы и кнопок перенаправления
+    // 6. Слушатели событий клика и перенаправления
     closeAuth?.addEventListener("click", () => {
         window.location.href = "karta.html";
     });
@@ -210,9 +223,9 @@ document.addEventListener("DOMContentLoaded", () => {
         registerForm?.classList.remove("hidden");
     });
 
-    // Навешиваем сабмит на формы (более надежно для обработки Enter и валидации)
-    loginForm?.addEventListener("submit", loginUser);
-    registerForm?.addEventListener("submit", registerUser);
+    // Возвращаем обычные слушатели клика на кнопки
+    registerBtn?.addEventListener("click", registerUser);
+    loginBtn?.addEventListener("click", loginUser);
     
     if (logoutBtn) {
         logoutBtn.addEventListener("click", window.logoutUser);
