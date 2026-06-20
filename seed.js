@@ -146,7 +146,7 @@ const recipesData = [
         },
         {
             name: "Сидр",
-            image: "Фото блюд/Sidr.jpg",
+            image: "Фото блюд/sidr.jpg",
             cuisine: "Канада", 
             category: "drink",
             ingredients: "Яблоки — 5 шт., Сахар — 3 ст. ложки, Вода — 1 литр",
