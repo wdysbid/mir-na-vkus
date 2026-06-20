@@ -1,40 +1,73 @@
+// Живой адрес твоего бэкенда на Render
+const API_URL = "https://mir-na-vkus-backend.onrender.com/api";
+
+// ====== ГЛОБАЛЬНЫЕ ФУНКЦИИ (вынесены из DOMContentLoaded, чтобы работать в onclick) ======
+
+// Удаление из избранного
+window.removeFavorite = async (recipeName) => {
+    const user = localStorage.getItem("loggedInUser");
+    if (!user) return;
+    if (!confirm(`Удалить "${recipeName}" из избранного?`)) return;
+
+    try {
+        const response = await fetch(`${API_URL}/favorites/remove`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ username: user, recipeName: recipeName })
+        });
+        if (response.ok) {
+            // Перерисовываем список (вызываем функцию, которая станет доступна глобально)
+            if (typeof window.refreshFavoritesUI === "function") {
+                window.refreshFavoritesUI();
+            }
+        } else {
+            alert("Не удалось удалить рецепт.");
+        }
+    } catch (err) {
+        alert("Ошибка при удалении");
+    }
+};
+
+// Выход из аккаунта
+window.logoutUser = () => {
+    localStorage.removeItem("loggedInUser");
+    window.location.href = "karta.html";
+};
+
+
+// ====== ОСНОВНАЯ ЛОГИКА СТРАНИЦЫ ======
 document.addEventListener("DOMContentLoaded", () => {
     // 1. Основные элементы интерфейса
-    const authButton = document.getElementById("auth-button");
     const authModal = document.getElementById("auth-modal");
     const closeAuth = document.getElementById("close-auth");
+    const skipAuthBtn = document.getElementById('skip-auth');
     
     const registerForm = document.getElementById("registration-form");
     const loginForm = document.getElementById("login-form");
     
     const showLogin = document.getElementById("show-login");
     const showRegister = document.getElementById("show-register");
-    const registerBtn = document.getElementById("register-btn");
-    const loginBtn = document.getElementById("login-btn");
     const logoutBtn = document.getElementById("logout-btn");
     
     const profileContent = document.getElementById("profile-content");
     const usernameSpan = document.getElementById("username");
     const favoritesList = document.getElementById("favorites-list");
 
-    const API_URL = "https://mir-na-vkus-backend.onrender.com/api";
     // 2. Функция обновления состояния страницы
     function updateAuthState() {
         const loggedInUser = localStorage.getItem("loggedInUser");
         const isProfilePage = window.location.pathname.includes("profile.html");
 
         if (loggedInUser) {
-            // Если пользователь вошел
             if (isProfilePage) {
-                if (profileContent) profileContent.classList.remove("hidden");
+                profileContent?.classList.remove("hidden");
                 if (usernameSpan) usernameSpan.textContent = loggedInUser;
                 if (authModal) authModal.style.display = "none";
                 displayFavorites(); // Загружаем избранные рецепты
             }
         } else {
-            // Если пользователь не авторизован и находится в профиле — показываем окно входа
             if (isProfilePage) {
-                if (profileContent) profileContent.classList.add("hidden");
+                profileContent?.classList.add("hidden");
                 if (authModal) authModal.style.display = "block";
             }
         }
@@ -101,13 +134,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-    // 5. Выход из аккаунта
-    window.logoutUser = () => {
-        localStorage.removeItem("loggedInUser");
-        window.location.href = "karta.html";
-    };
-
-    // 6. Отображение избранных рецептов
+    // 5. Отображение избранных рецептов
     async function displayFavorites() {
         if (!favoritesList) return;
         const user = localStorage.getItem("loggedInUser");
@@ -117,14 +144,14 @@ document.addEventListener("DOMContentLoaded", () => {
             const response = await fetch(`${API_URL}/favorites/${user}`);
             const favs = await response.json();
 
-            if (favs.length === 0) {
-                favoritesList.innerHTML = `<p style="text-align:center; width:100%;">У вас пока нет избранных рецептов.</p>`;
+            if (!favs || favs.length === 0) {
+                favoritesList.innerHTML = `<p style="text-align:center; width:100%; color: white;">У вас пока нет избранных рецептов.</p>`;
                 return;
             }
 
             favoritesList.innerHTML = favs.map(recipe => `
                 <div class="recipe">
-                    <div class="favorite-icon" onclick="removeFavorite('${recipe.name}')">
+                    <div class="favorite-icon" onclick="removeFavorite('${recipe.name}')" style="position: absolute; top: 10px; right: 10px; z-index: 10;">
                         <img src="heart.png" alt="Удалить" style="width:25px; cursor:pointer;">
                     </div>
                     <img src="${recipe.image}" alt="${recipe.name}" onerror="this.src='default.png'">
@@ -132,7 +159,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         <h3>${recipe.name}</h3>
                         <p class="details"><strong>Ингредиенты:</strong> ${recipe.ingredients}</p>
                         <div class="instructions" style="display: none; margin-top: 10px;">
-                            <hr>
+                            <hr style="border-color: rgba(255,255,255,0.2);">
                             <strong>Способ приготовления:</strong>
                             <p>${recipe.instructions || 'Инструкция скоро появится...'}</p>
                         </div>
@@ -145,6 +172,9 @@ document.addEventListener("DOMContentLoaded", () => {
             console.error("Ошибка при получении избранного:", err); 
         }
     }
+
+    // Прокидываем функцию обновления списка наружу, чтобы её видел глобальный window.removeFavorite
+    window.refreshFavoritesUI = displayFavorites;
 
     // Логика кнопок "Показать способ приготовления"
     function attachDetailsLogic() {
@@ -159,28 +189,13 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // Удаление из избранного
-    window.removeFavorite = async (recipeName) => {
-        const user = localStorage.getItem("loggedInUser");
-        if (!confirm(`Удалить "${recipeName}" из избранного?`)) return;
-
-        try {
-            const response = await fetch(`${API_URL}/favorites/remove`, {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ username: user, recipeName: recipeName })
-            });
-            if (response.ok) {
-                displayFavorites();
-            }
-        } catch (err) {
-            alert("Ошибка при удалении");
-        }
-    };
-
-    // 7. Слушатели событий (Кнопки, Модалки)
+    // 6. Слушатели событий формы и кнопок перенаправления
     closeAuth?.addEventListener("click", () => {
         window.location.href = "karta.html";
+    });
+
+    skipAuthBtn?.addEventListener('click', () => {
+        window.location.href = 'karta.html';
     });
 
     showLogin?.addEventListener("click", (e) => {
@@ -195,20 +210,14 @@ document.addEventListener("DOMContentLoaded", () => {
         registerForm?.classList.remove("hidden");
     });
 
-    loginBtn?.addEventListener("click", loginUser);
-    registerBtn?.addEventListener("click", registerUser);
-    if (logoutBtn) logoutBtn.addEventListener("click", window.logoutUser);
+    // Навешиваем сабмит на формы (более надежно для обработки Enter и валидации)
+    loginForm?.addEventListener("submit", loginUser);
+    registerForm?.addEventListener("submit", registerUser);
+    
+    if (logoutBtn) {
+        logoutBtn.addEventListener("click", window.logoutUser);
+    }
 
     // Запуск проверки авторизации при загрузке
     updateAuthState();
 });
-
-// Находим наш абзац по его id
-const skipAuthBtn = document.getElementById('skip-auth');
-
-if (skipAuthBtn) {
-    skipAuthBtn.addEventListener('click', function() {
-        // Перенаправляем пользователя на страницу карты
-        window.location.href = 'karta.html';
-    });
-}
